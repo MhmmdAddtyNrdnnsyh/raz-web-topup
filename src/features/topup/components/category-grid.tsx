@@ -1,0 +1,145 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useCategories } from "@/features/topup/hooks/use-topup";
+import { Separator } from "@/components/ui/separator";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.04 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
+const GROUP_ICONS: Record<string, string> = {
+  "Internet & Komunikasi": "📡",
+  "Hiburan & Gaming": "🎮",
+  "E-Wallet & Pembayaran Digital": "💳",
+  Tagihan: "📋",
+  "Asuransi & Kesehatan": "🛡️",
+};
+
+export default function CategoryGrid() {
+  const { data: categories, isLoading } = useCategories();
+
+  if (isLoading) {
+    return (
+      <section className="py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-10">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="space-y-4">
+                <div className="h-6 w-48 bg-white/5 rounded-lg animate-pulse" />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                  {Array.from({ length: 4 }).map((_, j) => (
+                    <div
+                      key={j}
+                      className="h-24 rounded-2xl bg-white/5 animate-pulse"
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Group categories by their group field
+  const grouped = categories?.reduce(
+    (acc, cat) => {
+      if (!acc[cat.group]) {
+        acc[cat.group] = [];
+      }
+      acc[cat.group].push(cat);
+      return acc;
+    },
+    {} as Record<string, typeof categories>
+  );
+
+  if (!grouped) return null;
+
+  return (
+    <section className="py-16 sm:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-10"
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold text-white">
+            Semua Layanan
+          </h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Pilih layanan yang kamu butuhkan
+          </p>
+        </motion.div>
+
+        {/* Grouped Categories */}
+        <div className="space-y-10">
+          {Object.entries(grouped).map(([groupName, groupCategories], groupIndex) => (
+            <motion.div
+              key={groupName}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: groupIndex * 0.05 }}
+            >
+              {groupIndex > 0 && <Separator className="mb-8 opacity-10" />}
+
+              {/* Group Header */}
+              <div className="flex items-center gap-2.5 mb-5">
+                <span className="text-lg">{GROUP_ICONS[groupName] || "📦"}</span>
+                <h3 className="text-base sm:text-lg font-semibold text-zinc-200">
+                  {groupName}
+                </h3>
+                <span className="text-xs text-muted-foreground bg-white/5 px-2 py-0.5 rounded-full">
+                  {groupCategories?.length}
+                </span>
+              </div>
+
+              {/* Category Items */}
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
+              >
+                {groupCategories?.map((category) => (
+                  <motion.div key={category.id} variants={itemVariants}>
+                    <Link
+                      href={`/topup/${category.slug}`}
+                      className="group relative flex flex-col items-center justify-center gap-2.5 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-300"
+                    >
+                      {/* Hover glow */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-600/0 to-fuchsia-600/0 group-hover:from-violet-600/5 group-hover:to-fuchsia-600/5 transition-all duration-300" />
+
+                      <span className="text-2xl sm:text-3xl relative z-10">
+                        {category.icon}
+                      </span>
+                      <span className="text-xs sm:text-sm font-medium text-zinc-300 group-hover:text-white transition-colors text-center relative z-10 leading-tight">
+                        {category.name}
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
