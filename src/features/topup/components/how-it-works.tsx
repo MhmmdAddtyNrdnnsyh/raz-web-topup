@@ -8,25 +8,25 @@ const STEPS = [
     icon: Zap,
     title: "Pilih Produk",
     description: "Pilih game atau layanan yang ingin kamu top-up",
-    gradient: "from-violet-500 to-indigo-500",
+    gradient: "from-ocean-800 to-ocean-700",
   },
   {
     icon: CreditCard,
     title: "Masukkan ID & Nominal",
     description: "Isi User ID dan pilih nominal yang diinginkan",
-    gradient: "from-fuchsia-500 to-pink-500",
+    gradient: "from-ocean-700 to-ocean-600",
   },
   {
     icon: Shield,
     title: "Bayar",
     description: "Pilih metode pembayaran dan selesaikan transaksi",
-    gradient: "from-cyan-500 to-blue-500",
+    gradient: "from-ocean-600 to-ocean-500",
   },
   {
     icon: Clock,
     title: "Selesai!",
     description: "Item akan masuk ke akun kamu dalam hitungan detik",
-    gradient: "from-emerald-500 to-teal-500",
+    gradient: "from-ocean-500 to-ocean-400",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function HowItWorks() {
   return (
     <section className="py-16 sm:py-24 relative overflow-hidden">
       {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-950/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ocean-800/5 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -58,10 +58,10 @@ export default function HowItWorks() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
             Cara Order
           </h2>
-          <p className="text-sm text-zinc-500 max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground max-w-md mx-auto">
             Hanya butuh 4 langkah mudah untuk top-up
           </p>
         </motion.div>
@@ -82,10 +82,10 @@ export default function HowItWorks() {
             >
               {/* Connector line (hidden on mobile and last item) */}
               {index < STEPS.length - 1 && (
-                <div className="hidden lg:block absolute top-10 left-[calc(50%+2rem)] right-0 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                <div className="hidden lg:block absolute top-10 left-[calc(50%+2rem)] right-0 h-px bg-gradient-to-r from-border to-transparent" />
               )}
 
-              <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all duration-300">
+              <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-card/50 border border-border hover:border-ocean-400/30 transition-all duration-300">
                 {/* Step number & icon */}
                 <div className="relative mb-4">
                   <div
@@ -93,15 +93,15 @@ export default function HowItWorks() {
                   >
                     <step.icon className="w-6 h-6 text-white" />
                   </div>
-                  <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center text-[10px] font-bold text-zinc-400">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-background border border-border flex items-center justify-center text-[10px] font-bold text-muted-foreground">
                     {index + 1}
                   </span>
                 </div>
 
-                <h3 className="text-base font-semibold text-white mb-1.5">
+                <h3 className="text-base font-semibold text-foreground mb-1.5">
                   {step.title}
                 </h3>
-                <p className="text-xs text-zinc-500 leading-relaxed">
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   {step.description}
                 </p>
               </div>

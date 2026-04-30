@@ -28,7 +28,7 @@ export default function PopularProducts() {
         {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
-            className="h-64 rounded-2xl bg-white/5 animate-pulse"
+            className="h-64 rounded-2xl bg-muted animate-pulse"
           />
         ))}
       </div>
@@ -49,17 +49,17 @@ export default function PopularProducts() {
           <div>
             <div className="flex items-center gap-2">
               <Flame className="w-5 h-5 text-orange-500" />
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
                 Populer
               </h2>
             </div>
-            <p className="text-sm text-zinc-500 mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               Produk paling banyak dipesan
             </p>
           </div>
           <Link
             href="/"
-            className="hidden sm:flex items-center gap-1 text-sm text-violet-400 hover:text-violet-300 transition-colors"
+            className="hidden sm:flex items-center gap-1 text-sm text-ocean-400 hover:text-ocean-300 transition-colors"
           >
             Lihat semua
             <ArrowRight className="w-4 h-4" />
@@ -84,10 +84,10 @@ export default function PopularProducts() {
               <motion.div key={product.id} variants={itemVariants}>
                 <Link
                   href={`/topup/${product.slug}`}
-                  className="group relative flex flex-col rounded-2xl bg-white/[0.03] border border-white/5 overflow-hidden hover:border-violet-500/30 transition-all duration-300"
+                  className="group relative flex flex-col rounded-2xl bg-card/50 border border-border overflow-hidden hover:border-ocean-400/40 transition-all duration-300"
                 >
                   {/* Product Image */}
-                  <div className="relative aspect-[4/3] bg-gradient-to-br from-zinc-800 to-zinc-900 overflow-hidden">
+                  <div className="relative aspect-[4/3] bg-gradient-to-br from-ocean-900/50 to-ocean-800/50 dark:from-ocean-900 dark:to-ocean-800 overflow-hidden">
                     <div className="absolute inset-0 flex items-center justify-center text-5xl">
                       {product.slug === "mobile-legends" && "⚔️"}
                       {product.slug === "free-fire" && "🔥"}
@@ -97,7 +97,7 @@ export default function PopularProducts() {
                       {product.slug === "telkomsel" && "📱"}
                     </div>
                     {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
 
                     {/* Promo badge */}
                     {hasPromo && (
@@ -111,13 +111,13 @@ export default function PopularProducts() {
 
                   {/* Product Info */}
                   <div className="p-4 flex flex-col gap-1.5">
-                    <h3 className="text-sm font-semibold text-zinc-200 group-hover:text-white transition-colors line-clamp-1">
+                    <h3 className="text-sm font-semibold text-foreground/80 group-hover:text-foreground transition-colors line-clamp-1">
                       {product.name}
                     </h3>
-                    <p className="text-[11px] text-zinc-500">
+                    <p className="text-[11px] text-muted-foreground">
                       {product.publisher}
                     </p>
-                    <p className="text-xs text-violet-400 font-medium mt-1">
+                    <p className="text-xs text-ocean-400 font-medium mt-1">
                       Mulai dari {formatCurrency(minPrice)}
                     </p>
                   </div>

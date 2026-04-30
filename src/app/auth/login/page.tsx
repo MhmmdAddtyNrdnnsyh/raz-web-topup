@@ -35,15 +35,15 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-12">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/10 via-zinc-950 to-zinc-950 -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-ocean-800/10 via-background to-background -z-10" />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
         {/* Header */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-800 to-ocean-500 flex items-center justify-center">
               <Gamepad2 className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-ocean-400 to-ocean-600 bg-clip-text text-transparent">
               {APP_NAME}
             </span>
           </Link>
@@ -102,7 +102,7 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-10 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold hover:opacity-90 border-0"
+                className="w-full h-10 rounded-xl bg-gradient-to-r from-ocean-800 to-ocean-500 text-white font-semibold hover:opacity-90 border-0"
               >
                 {isLoading ? (
                   <>
@@ -123,7 +123,7 @@ export default function LoginPage() {
 
             <p className="text-center text-sm text-muted-foreground">
               Belum punya akun?{" "}
-              <Link href="/auth/login" className="text-violet-400 hover:text-violet-300 font-medium underline-offset-4 hover:underline">Daftar sekarang</Link>
+              <Link href="/auth/login" className="text-ocean-400 hover:text-ocean-300 font-medium underline-offset-4 hover:underline">Daftar sekarang</Link>
             </p>
           </CardContent>
         </Card>

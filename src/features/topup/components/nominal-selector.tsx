@@ -31,8 +31,8 @@ export default function NominalSelector({
             className={cn(
               "relative flex flex-col items-start gap-1.5 p-4 rounded-xl border transition-all duration-200 text-left",
               isSelected
-                ? "border-violet-500 bg-violet-500/10 shadow-lg shadow-violet-500/10"
-                : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]"
+                ? "border-ocean-400 bg-ocean-400/10 shadow-lg shadow-ocean-400/10"
+                : "border-border bg-card/50 hover:border-ocean-400/30 hover:bg-card"
             )}
           >
             {/* Promo badge */}
@@ -45,7 +45,7 @@ export default function NominalSelector({
             <span
               className={cn(
                 "text-sm font-semibold",
-                isSelected ? "text-violet-300" : "text-zinc-200"
+                isSelected ? "text-ocean-300 dark:text-ocean-300" : "text-foreground/80"
               )}
             >
               {nominal.name}
@@ -55,13 +55,13 @@ export default function NominalSelector({
               <span
                 className={cn(
                   "text-sm font-bold",
-                  isSelected ? "text-violet-400" : "text-white"
+                  isSelected ? "text-ocean-400" : "text-foreground"
                 )}
               >
                 {formatCurrency(nominal.price)}
               </span>
               {nominal.originalPrice && (
-                <span className="text-xs text-zinc-600 line-through">
+                <span className="text-xs text-muted-foreground line-through">
                   {formatCurrency(nominal.originalPrice)}
                 </span>
               )}

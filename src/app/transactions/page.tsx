@@ -46,7 +46,7 @@ export default function TransactionsPage() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <div className="flex items-center gap-2 mb-1">
-            <History className="w-5 h-5 text-violet-400" />
+            <History className="w-5 h-5 text-ocean-400" />
             <h1 className="text-2xl font-bold text-foreground">Riwayat Transaksi</h1>
           </div>
           <p className="text-sm text-muted-foreground">Daftar semua transaksi yang pernah kamu lakukan</p>
@@ -58,7 +58,7 @@ export default function TransactionsPage() {
               <History className="w-7 h-7 text-muted-foreground" />
             </div>
             <p className="text-sm text-muted-foreground">Belum ada transaksi</p>
-            <Link href="/" className="text-sm text-violet-400 hover:text-violet-300 underline underline-offset-4">Mulai top-up sekarang</Link>
+            <Link href="/" className="text-sm text-ocean-400 hover:text-ocean-300 underline underline-offset-4">Mulai top-up sekarang</Link>
           </motion.div>
         ) : (
           <motion.div variants={containerVariants} initial="hidden" animate="show" className="space-y-3">
@@ -68,7 +68,7 @@ export default function TransactionsPage() {
                   <CardContent className="py-4">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center text-xl shrink-0 ring-1 ring-foreground/5">
+                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-ocean-800 to-ocean-900 flex items-center justify-center text-xl shrink-0 ring-1 ring-foreground/5">
                           {getProductEmoji(trx.productName)}
                         </div>
                         <div className="min-w-0">
@@ -86,7 +86,7 @@ export default function TransactionsPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-semibold text-foreground">{formatCurrency(trx.totalAmount)}</span>
-                        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-violet-400 transition-colors" />
+                        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-ocean-400 transition-colors" />
                       </div>
                     </div>
                   </CardContent>

@@ -36,12 +36,12 @@ export default function CategoryGrid() {
           <div className="space-y-10">
             {Array.from({ length: 3 }).map((_, i) => (
               <div key={i} className="space-y-4">
-                <div className="h-6 w-48 bg-white/5 rounded-lg animate-pulse" />
+                <div className="h-6 w-48 bg-muted rounded-lg animate-pulse" />
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                   {Array.from({ length: 4 }).map((_, j) => (
                     <div
                       key={j}
-                      className="h-24 rounded-2xl bg-white/5 animate-pulse"
+                      className="h-24 rounded-2xl bg-muted animate-pulse"
                     />
                   ))}
                 </div>
@@ -68,7 +68,7 @@ export default function CategoryGrid() {
   if (!grouped) return null;
 
   return (
-    <section className="py-16 sm:py-20">
+    <section id="categories" className="py-16 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -78,7 +78,7 @@ export default function CategoryGrid() {
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
             Semua Layanan
           </h2>
           <p className="text-sm text-muted-foreground mt-1">
@@ -96,15 +96,15 @@ export default function CategoryGrid() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: groupIndex * 0.05 }}
             >
-              {groupIndex > 0 && <Separator className="mb-8 opacity-10" />}
+              {groupIndex > 0 && <Separator className="mb-8 opacity-30" />}
 
               {/* Group Header */}
               <div className="flex items-center gap-2.5 mb-5">
                 <span className="text-lg">{GROUP_ICONS[groupName] || "📦"}</span>
-                <h3 className="text-base sm:text-lg font-semibold text-zinc-200">
+                <h3 className="text-base sm:text-lg font-semibold text-foreground">
                   {groupName}
                 </h3>
-                <span className="text-xs text-muted-foreground bg-white/5 px-2 py-0.5 rounded-full">
+                <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
                   {groupCategories?.length}
                 </span>
               </div>
@@ -121,15 +121,15 @@ export default function CategoryGrid() {
                   <motion.div key={category.id} variants={itemVariants}>
                     <Link
                       href={`/topup/${category.slug}`}
-                      className="group relative flex flex-col items-center justify-center gap-2.5 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-300"
+                      className="group relative flex flex-col items-center justify-center gap-2.5 p-5 rounded-2xl bg-card/50 border border-border hover:border-ocean-400/40 hover:bg-ocean-400/5 transition-all duration-300"
                     >
                       {/* Hover glow */}
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-600/0 to-fuchsia-600/0 group-hover:from-violet-600/5 group-hover:to-fuchsia-600/5 transition-all duration-300" />
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-ocean-400/0 to-ocean-600/0 group-hover:from-ocean-400/5 group-hover:to-ocean-600/5 transition-all duration-300" />
 
                       <span className="text-2xl sm:text-3xl relative z-10">
                         {category.icon}
                       </span>
-                      <span className="text-xs sm:text-sm font-medium text-zinc-300 group-hover:text-white transition-colors text-center relative z-10 leading-tight">
+                      <span className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center relative z-10 leading-tight">
                         {category.name}
                       </span>
                     </Link>

@@ -58,9 +58,9 @@ export default function TopupDetailPage() {
   if (!product) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 px-4">
-        <AlertCircle className="w-12 h-12 text-zinc-600" />
-        <h2 className="text-lg font-semibold text-zinc-300">Produk tidak ditemukan</h2>
-        <Link href="/" className="text-sm text-violet-400 hover:text-violet-300 underline underline-offset-4">Kembali ke beranda</Link>
+        <AlertCircle className="w-12 h-12 text-muted-foreground" />
+        <h2 className="text-lg font-semibold text-foreground">Produk tidak ditemukan</h2>
+        <Link href="/" className="text-sm text-ocean-400 hover:text-ocean-300 underline underline-offset-4">Kembali ke beranda</Link>
       </div>
     );
   }
@@ -103,7 +103,7 @@ export default function TopupDetailPage() {
   return (
     <div className="min-h-screen pb-20">
       {/* Breadcrumb */}
-      <div className="bg-zinc-950/80 backdrop-blur-xl border-b border-white/5 sticky top-16 z-40">
+      <div className="bg-background/80 backdrop-blur-xl border-b border-border sticky top-16 z-40">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3">
           <div className="flex items-center gap-3">
             <Button
@@ -125,8 +125,8 @@ export default function TopupDetailPage() {
                 const isCurrent = currentStep === step;
                 return (
                   <div key={step} className="flex items-center gap-2 shrink-0">
-                    {index > 0 && <ChevronRight className="w-3 h-3 text-zinc-700" />}
-                    <span className={isCurrent ? "text-violet-400 font-medium" : isActive ? "text-zinc-300" : "text-zinc-600"}>
+                    {index > 0 && <ChevronRight className="w-3 h-3 text-muted-foreground/50" />}
+                    <span className={isCurrent ? "text-ocean-400 font-medium" : isActive ? "text-foreground" : "text-muted-foreground"}>
                       {STEP_LABELS[step]}
                     </span>
                   </div>
@@ -141,11 +141,11 @@ export default function TopupDetailPage() {
         {/* Product Header */}
         {currentStep !== "success" && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4 mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center text-3xl shrink-0 border border-white/5">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-ocean-800 to-ocean-900 flex items-center justify-center text-3xl shrink-0 border border-border">
               {emoji}
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">{product.name}</h1>
+              <h1 className="text-xl font-bold text-foreground">{product.name}</h1>
               <p className="text-sm text-muted-foreground">{product.publisher}</p>
             </div>
           </motion.div>
@@ -156,7 +156,7 @@ export default function TopupDetailPage() {
           {currentStep === "input" && (
             <motion.div key="input" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
               <div>
-                <h2 className="text-lg font-semibold text-white mb-1">Masukkan Data Akun</h2>
+                <h2 className="text-lg font-semibold text-foreground mb-1">Masukkan Data Akun</h2>
                 <p className="text-sm text-muted-foreground">{product.description}</p>
               </div>
               <div className="space-y-4">
@@ -172,9 +172,9 @@ export default function TopupDetailPage() {
                         onChange={(e) => setUserInputs((prev) => ({ ...prev, [field.key]: e.target.value }))}
                         className="w-full h-10 px-3 rounded-lg border border-input bg-transparent text-sm focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 transition-all appearance-none"
                       >
-                        <option value="" className="bg-zinc-900">{field.placeholder}</option>
+                        <option value="" className="bg-card">{field.placeholder}</option>
                         {field.options?.map((opt) => (
-                          <option key={opt.value} value={opt.value} className="bg-zinc-900">{opt.label}</option>
+                          <option key={opt.value} value={opt.value} className="bg-card">{opt.label}</option>
                         ))}
                       </select>
                     ) : (
@@ -199,7 +199,7 @@ export default function TopupDetailPage() {
           {currentStep === "nominal" && (
             <motion.div key="nominal" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
               <div>
-                <h2 className="text-lg font-semibold text-white mb-1">Pilih Nominal</h2>
+                <h2 className="text-lg font-semibold text-foreground mb-1">Pilih Nominal</h2>
                 <p className="text-sm text-muted-foreground">Pilih paket yang ingin kamu beli</p>
               </div>
               <NominalSelector nominals={product.nominals} selectedId={selectedNominal?.id || null} onSelect={setSelectedNominal} />
@@ -210,7 +210,7 @@ export default function TopupDetailPage() {
           {currentStep === "payment" && paymentMethods && (
             <motion.div key="payment" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
               <div>
-                <h2 className="text-lg font-semibold text-white mb-1">Metode Pembayaran</h2>
+                <h2 className="text-lg font-semibold text-foreground mb-1">Metode Pembayaran</h2>
                 <p className="text-sm text-muted-foreground">Pilih cara pembayaran yang kamu inginkan</p>
               </div>
               <PaymentMethodSelector methods={paymentMethods} selectedId={selectedPayment?.id || null} onSelect={setSelectedPayment} />
@@ -233,12 +233,12 @@ export default function TopupDetailPage() {
                 </div>
               </motion.div>
               <div>
-                <h2 className="text-2xl font-bold text-white mb-2">Pesanan Berhasil! 🎉</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-2">Pesanan Berhasil! 🎉</h2>
                 <p className="text-sm text-muted-foreground max-w-sm">Transaksi kamu sedang diproses. Item akan masuk ke akun dalam beberapa saat.</p>
               </div>
               <div className="p-4 rounded-xl bg-card ring-1 ring-foreground/10 text-sm">
                 <p className="text-muted-foreground mb-1">Order ID</p>
-                <p className="text-white font-mono font-semibold">{orderId}</p>
+                <p className="text-foreground font-mono font-semibold">{orderId}</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 mt-2">
                 <Link href="/transactions" className="inline-flex items-center justify-center h-9 px-4 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/80 transition-colors">
@@ -254,12 +254,12 @@ export default function TopupDetailPage() {
 
         {/* Bottom Action Button */}
         {currentStep !== "checkout" && currentStep !== "success" && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="fixed bottom-0 left-0 right-0 p-4 bg-zinc-950/90 backdrop-blur-xl border-t border-white/5 z-40">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="fixed bottom-0 left-0 right-0 p-4 bg-background/90 backdrop-blur-xl border-t border-border z-40">
             <div className="max-w-4xl mx-auto">
               <Button
                 onClick={handleNextStep}
                 disabled={!canProceed()}
-                className="w-full h-12 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-30 border-0"
+                className="w-full h-12 rounded-xl bg-gradient-to-r from-ocean-800 to-ocean-500 text-white text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-30 border-0"
               >
                 Lanjutkan
               </Button>

@@ -54,7 +54,7 @@ export default function CheckoutSummary({
         <CardContent className="space-y-4">
           {/* Product */}
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center text-2xl shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ocean-800 to-ocean-900 flex items-center justify-center text-2xl shrink-0">
               {emoji}
             </div>
             <div>
@@ -107,7 +107,7 @@ export default function CheckoutSummary({
           <Button
             onClick={onConfirm}
             disabled={isProcessing}
-            className="w-full h-12 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold hover:opacity-90 border-0"
+            className="w-full h-12 rounded-xl bg-gradient-to-r from-ocean-800 to-ocean-500 text-white font-semibold hover:opacity-90 border-0"
           >
             {isProcessing ? (
               <>

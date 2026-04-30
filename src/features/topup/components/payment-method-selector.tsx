@@ -32,7 +32,7 @@ export default function PaymentMethodSelector({
     <div className="space-y-6">
       {Object.entries(grouped).map(([group, groupMethods]) => (
         <div key={group}>
-          <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">
+          <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
             {group}
           </h4>
           <div className="space-y-2">
@@ -47,8 +47,8 @@ export default function PaymentMethodSelector({
                   className={cn(
                     "w-full flex items-center justify-between p-4 rounded-xl border transition-all duration-200",
                     isSelected
-                      ? "border-violet-500 bg-violet-500/10"
-                      : "border-white/5 bg-white/[0.02] hover:border-white/10"
+                      ? "border-ocean-400 bg-ocean-400/10"
+                      : "border-border bg-card/50 hover:border-ocean-400/30"
                   )}
                 >
                   <div className="flex items-center gap-3">
@@ -56,7 +56,7 @@ export default function PaymentMethodSelector({
                     <span
                       className={cn(
                         "text-sm font-medium",
-                        isSelected ? "text-white" : "text-zinc-300"
+                        isSelected ? "text-foreground" : "text-foreground/80"
                       )}
                     >
                       {method.name}
@@ -64,7 +64,7 @@ export default function PaymentMethodSelector({
                   </div>
                   <div className="flex items-center gap-2">
                     {method.fee > 0 && (
-                      <span className="text-xs text-zinc-500">
+                      <span className="text-xs text-muted-foreground">
                         +{formatCurrency(method.fee)}
                       </span>
                     )}
@@ -77,8 +77,8 @@ export default function PaymentMethodSelector({
                       className={cn(
                         "w-4 h-4 rounded-full border-2 transition-colors",
                         isSelected
-                          ? "border-violet-500 bg-violet-500"
-                          : "border-zinc-700"
+                          ? "border-ocean-400 bg-ocean-400"
+                          : "border-muted-foreground/30"
                       )}
                     >
                       {isSelected && (
